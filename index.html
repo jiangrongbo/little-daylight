@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7ef">
+  <title>追着阳光跑 · 北京的白天为什么会变长？</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E☀️%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="daylight.js" defer></script>
+  <script src="space.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./index.html"><span class="brand-icon" aria-hidden="true">✳</span> 小小天文家 <span class="brand-divider">/</span><span class="brand-sub">一起发现世界</span></a>
+    <span class="location"><span aria-hidden="true">◎</span> 我们在北京 <span>北纬 39.9°</span></span>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow">一场关于阳光的小探索</p><h1 id="page-title">为什么夏天的<span class="highlight">白天更长</span>？</h1><p class="subtitle">让地球走一走，看看北京能晒多久太阳。</p></div>
+      <div class="lesson-tag"><span aria-hidden="true">☀</span><div>动动小手，发现答案<small>拖一拖 · 看一看 · 想一想</small></div></div>
+    </section>
+
+    <div class="view-switch" aria-label="选择演示视角">
+      <button id="view-diagram" class="selected" aria-pressed="true" aria-controls="diagram-view">讲解示意图</button>
+      <button id="view-space" aria-pressed="false" aria-controls="space-view"><span aria-hidden="true">◉</span> 3D 太空视角</button>
+      <span>换个角度，看看阳光怎样照亮地球</span>
+    </div>
+    <div class="exploration" id="exploration">
+      <section class="panel orbit-panel" aria-labelledby="orbit-heading">
+        <div class="panel-heading"><div><span class="step">01</span><h2 id="orbit-heading">带地球去旅行</h2></div><span class="view-label" id="orbit-view-label">从轨道上方看</span></div>
+        <div class="orbit-wrap" id="diagram-view">
+          <svg id="orbit" viewBox="0 0 600 445" aria-labelledby="orbit-title orbit-desc">
+            <title id="orbit-title">地球绕太阳公转示意图</title><desc id="orbit-desc">拖动蓝色地球选择季节；也可使用下方的全年位置滑块。</desc>
+            <defs>
+              <radialGradient id="sun-glow"><stop stop-color="#ffd76f" stop-opacity=".32"/><stop offset="1" stop-color="#ffd76f" stop-opacity="0"/></radialGradient>
+              <marker id="axis-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10" fill="#b6674c"/></marker>
+            </defs>
+            <circle cx="300" cy="220" r="198" fill="none" stroke="#e9e8df" stroke-dasharray="2 9"/>
+            <circle cx="300" cy="220" r="160" class="orbit-track"/>
+            <path d="M300 60 A160 160 0 0 0 187 107" fill="none" stroke="#b7c6b7" stroke-width="2"/>
+            <path d="M186 99L185 109L195 107" fill="none" stroke="#b7c6b7" stroke-width="2" stroke-linecap="round"/>
+            <g class="season-label" text-anchor="middle"><text x="52" y="216">夏至</text><text x="52" y="237" class="season-caption">白天最长</text><text x="548" y="216">冬至</text><text x="548" y="237" class="season-caption">白天最短</text><text x="300" y="24">春分</text><text x="300" y="422">秋分</text></g>
+            <g id="sun" aria-hidden="true"><circle cx="300" cy="220" r="100" fill="url(#sun-glow)"/>
+              <g stroke="#efb23c" stroke-width="4" stroke-linecap="round"><path d="M300 153v-9M300 287v9M233 220h-9M367 220h9M253 173l-7-7M347 267l7 7M347 173l7-7M253 267l-7 7"/></g>
+              <circle cx="300" cy="220" r="49" fill="#ffd35f" stroke="#edb942" stroke-width="2"/>
+              <ellipse cx="285" cy="215" rx="3" ry="4" fill="#8c622c"/><ellipse cx="315" cy="215" rx="3" ry="4" fill="#8c622c"/>
+              <path d="M290 231q10 11 20 0" fill="none" stroke="#8c622c" stroke-width="2.5" stroke-linecap="round"/>
+              <ellipse cx="275" cy="227" rx="6" ry="3.5" fill="#f1aa51"/><ellipse cx="325" cy="227" rx="6" ry="3.5" fill="#f1aa51"/>
+              <text x="300" y="327" text-anchor="middle" class="sun-label">太阳</text>
+            </g>
+            <path id="sun-connection" stroke="#e7c66b" stroke-width="2" stroke-dasharray="5 7"/>
+            <g id="earth-handle" class="earth-handle" aria-label="可拖动的地球；键盘请使用下方滑块">
+              <circle r="41" fill="#68aa9c" fill-opacity=".12"/>
+              <circle r="29" fill="#70b8cd" stroke="#f8fbf5" stroke-width="3"/>
+              <path d="M-18-19L-7-25 2-19-1-9-9-3-6 9-13 14-20 3-24-8ZM8-4L23-11 26 1 18 10 13 24 6 17 9 7 3 3Z" fill="#a4ce8d"/>
+              <path d="M-39 0H43" stroke="#b6674c" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#axis-arrow)"/>
+              <text x="46" y="5" class="axis-letter">北</text>
+              <text x="0" y="-51" text-anchor="middle" class="drag-label">拖动我</text>
+              <circle r="43" fill="transparent"/>
+            </g>
+          </svg>
+          <div class="orbit-note"><span class="tiny-axis" aria-hidden="true">↗</span> 地轴一直朝同一个方向倾斜</div>
+        </div>
+        <div id="space-view" hidden>
+          <div class="space-stage" id="space-stage">
+            <canvas id="space-canvas" tabindex="0" role="img" aria-label="太阳照亮正在自转和公转的三维地球模型" aria-describedby="space-help">请使用支持 Canvas 的现代浏览器，或切换到讲解示意图。</canvas>
+            <canvas id="space-hud" aria-hidden="true"></canvas>
+            <div class="space-labels" aria-hidden="true">
+              <span id="space-sun-label" class="space-label sun-label-3d">太阳 · 光源</span>
+              <span id="space-earth-anchor" class="space-anchor"><span class="space-label earth-label-3d">地球</span></span>
+              <span id="space-north-label" class="space-label north-label-3d">北极</span>
+              <span id="space-beijing-label" class="space-label beijing-label-3d">北京</span>
+              <span class="space-label space-season">夏至</span><span class="space-label space-season">秋分</span><span class="space-label space-season">冬至</span><span class="space-label space-season">春分</span>
+            </div>
+            <span class="space-badge">太阳照亮的一面是白天</span>
+            <span class="space-scale">地轴倾斜 23.44° · 大小与速度为示意</span>
+            <p id="space-status" class="space-status" role="alert" hidden></p>
+          </div>
+          <div class="camera-controls" aria-label="调整三维观察视角">
+            <div><button data-camera="left" aria-label="向左转动观察视角">←</button><button data-camera="right" aria-label="向右转动观察视角">→</button><button data-camera="up" aria-label="抬高观察视角">↑</button><button data-camera="down" aria-label="降低观察视角">↓</button><button data-camera="in" aria-label="放大三维模型">＋</button><button data-camera="out" aria-label="缩小三维模型">−</button></div>
+            <button data-camera="reset" class="reset-camera">↺ 最佳视角</button>
+          </div>
+          <p id="space-help" class="space-help">拖地球：绕太阳走 · 拖空白：转动视角 · 滚轮／双指：缩放<br>键盘方向键调整视角，＋／− 缩放，Home 回到最佳视角。</p>
+        </div>
+        <div class="orbit-controls"><div class="season-buttons"><button id="summer" class="season-button active" aria-pressed="true"><span aria-hidden="true">☀</span> 去夏天</button><button id="winter" class="season-button" aria-pressed="false"><span aria-hidden="true">❄</span> 去冬天</button></div><button id="orbit-play" class="play-button" aria-pressed="false">▶ 自动旅行</button></div>
+        <div class="slider-row"><label for="year-position">全年位置</label><input id="year-position" type="range" min="0" max="360" value="0" step="0.1" aria-valuetext="夏至"><output id="season-name" for="year-position">夏至</output></div>
+      </section>
+
+      <section class="panel detail-panel" aria-labelledby="detail-heading">
+        <div class="panel-heading"><div><span class="step">02</span><h2 id="detail-heading">看看北京的一天</h2></div><span class="view-label">地球放大镜</span></div>
+        <div class="globe-wrap">
+          <span id="day-state" class="day-state">☀ 北京正在过白天</span>
+          <svg id="globe" viewBox="0 0 500 375" role="img" aria-labelledby="globe-title globe-desc">
+            <title id="globe-title">北京随地球自转经过白天与黑夜</title><desc id="globe-desc">黄线与蓝线分别表示北京一天经过的白天与黑夜，虚线表示地球背面。</desc>
+            <defs><clipPath id="sphere-clip"><circle cx="250" cy="185" r="123"/></clipPath><marker id="light-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10" fill="#dcae42"/></marker></defs>
+            <circle cx="250" cy="185" r="141" fill="none" stroke="#e7eae1" stroke-dasharray="3 7"/>
+            <g id="light-rays" stroke="#dcae42" stroke-width="2" marker-end="url(#light-arrow)"></g>
+            <circle cx="250" cy="185" r="123" fill="#183d55"/>
+            <g id="sphere-mesh" clip-path="url(#sphere-clip)"></g>
+            <g id="equator" fill="none" stroke="#e3f0de" stroke-opacity=".5" stroke-width="1"></g>
+            <g id="latitude" fill="none" stroke-width="3" stroke-linecap="round"></g>
+            <path id="globe-axis" stroke="#b6674c" stroke-width="2" stroke-dasharray="5 4"/>
+            <text id="north-label" class="globe-label">北极</text><text x="333" y="62" class="tilt-label">倾斜 23.44°</text>
+            <g id="beijing-marker"><circle r="10" fill="#fff9e5" fill-opacity=".3"/><circle r="5" fill="#fff6ce" stroke="#9a6425" stroke-width="1.5"/><text id="beijing-label" x="12" y="-11" class="beijing-label">北京</text></g>
+            <text id="light-direction" x="250" y="353" text-anchor="middle" class="light-label">阳光从右侧照来</text>
+          </svg>
+        </div>
+        <div class="globe-caption"><span><i class="legend-line day-line"></i> 白天 <i class="legend-line night-line"></i> 黑夜 <small>虚线是背面</small></span><button id="spin-play" class="text-button" aria-pressed="true">Ⅱ 暂停自转</button></div>
+        <div class="day-length">
+          <div class="length-labels"><div><span class="metric-label">☀ 白天</span><strong id="day-hours">约 14小时50分</strong></div><div><span class="metric-label">☾ 黑夜</span><strong id="night-hours">约 9小时10分</strong></div></div>
+          <div class="length-bar" role="img" id="length-bar" aria-label="北京一天24小时，白天约14小时50分，黑夜约9小时10分"><div id="day-bar"></div><div id="night-bar"></div></div>
+          <div class="bar-caption"><span>北京的一整天</span><span>24 小时</span></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="discovery" aria-labelledby="discovery-heading"><span class="discovery-icon" aria-hidden="true">✦</span><div><h2 id="discovery-heading">发现啦！夏天，北京在亮处待得更久。</h2><p id="explanation">北半球朝太阳倾斜，北京转一圈，经过白天的时间就更长。</p></div><span id="discovery-tag" class="discovery-tag">白天长 · 黑夜短</span></section>
+    <footer><span>小提示：四季与地轴倾斜有关，不是因为夏天离太阳更近。南半球的季节与北京相反。</span><details><summary>给老师的科学说明</summary><p>北京取北纬39.9°。昼长为几何近似值，未计大气折射与太阳视半径，不是精确的日出日落时刻。圆形轨道、陆地轮廓及大小、距离和速度为示意。两幅图分别从轨道上方和侧面观察，因此地轴投影不同；地轴在空间中始终保持同一朝向。</p></details></footer>
+  </main>
+  <noscript>此演示需要启用浏览器的 JavaScript。</noscript>
+</body>
+</html>
